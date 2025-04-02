@@ -1,4 +1,4 @@
-import AssignmentForm from '../components/AssignmentForm';
+import AssignmentForm from './components/AssignmentForm';
 
 export default function Home() {
   return (
