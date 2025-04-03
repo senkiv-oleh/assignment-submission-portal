@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useCandidateLevels } from "@/hooks/useCandidateLevels";
 import { useSubmitAssignment } from "@/hooks/useSubmitAssignment";
-import { schema } from "@/models/schema";
+import { schema } from "@/models/AssignmentFormSchema";
 import { AssignmentData } from "@/types/AssignmentData";
 
 export default function AssignmentForm() {

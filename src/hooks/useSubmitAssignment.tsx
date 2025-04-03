@@ -6,14 +6,17 @@ import {
   AssignmentData,
   SubmittedAssignmentData,
 } from "@/types/AssignmentData";
+import { THANK_YOU_ROUTE } from "@/constants/routs";
+import { STORAGE_KEY } from "@/constants/keys";
+import {
+  API_RESPONSE_ERROR,
+  SUBMISSION_FAILED_ERROR,
+} from "@/constants/errors";
 
 export const useSubmitAssignment = () => {
   const router = useRouter();
   const [, setSubmittedAssignment] =
-    useLocalStorage<SubmittedAssignmentData | null>(
-      "submittedAssignment",
-      null,
-    );
+    useLocalStorage<SubmittedAssignmentData | null>(STORAGE_KEY, null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,12 +36,12 @@ export const useSubmitAssignment = () => {
         };
 
         setSubmittedAssignment(submittedData);
-        router.push("/thank-you");
+        router.push(THANK_YOU_ROUTE);
       } else {
-        setError("Invalid data received from the API.");
+        setError(API_RESPONSE_ERROR);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Submission failed");
+      setError(err instanceof Error ? err.message : SUBMISSION_FAILED_ERROR);
     } finally {
       setIsSubmitting(false);
     }

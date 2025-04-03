@@ -1,4 +1,9 @@
 import { useState, useEffect } from "react";
+import {
+  LOCAL_STORAGE_READ_ERROR,
+  LOCAL_STORAGE_PARSE_ERROR,
+  LOCAL_STORAGE_SET_ERROR,
+} from "@/constants/errors";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
   const [storedValue, setStoredValue] = useState<T>(initialValue);
@@ -10,7 +15,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
         setStoredValue(JSON.parse(item) as T);
       }
     } catch (error) {
-      console.error(`Error reading localStorage key "${key}":`, error);
+      console.error(`${LOCAL_STORAGE_READ_ERROR} "${key}":`, error);
     }
   }, [key]);
 
@@ -21,7 +26,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       setStoredValue(valueToStore);
       localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
-      console.error(`Error setting localStorage key "${key}":`, error);
+      console.error(`${LOCAL_STORAGE_SET_ERROR} "${key}":`, error);
     }
   };
 
@@ -31,7 +36,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
         try {
           setStoredValue(JSON.parse(event.newValue) as T);
         } catch (error) {
-          console.error(`Error parsing localStorage key "${key}":`, error);
+          console.error(`${LOCAL_STORAGE_PARSE_ERROR} "${key}":`, error);
         }
       }
     };

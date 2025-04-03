@@ -1,19 +1,23 @@
 import { AssignmentData } from "@/types/AssignmentData";
-
-const API_BASE_URL = "https://tools.qa.ale.ai/api/tools/candidates";
+import { API_BASE_URL } from "@/constants/apis";
+import {
+  CANDIDATE_LEVELS_FETCH_ERROR,
+  INVALID_API_RESPONSE_ERROR,
+  SUBMISSION_FAILED_ERROR,
+} from "@/constants/errors";
 
 export const fetchCandidateLevels = async (): Promise<string[]> => {
   try {
     const response = await fetch(`${API_BASE_URL}/levels`);
 
     if (!response.ok) {
-      throw new Error("Failed to fetch candidate levels");
+      throw new Error(CANDIDATE_LEVELS_FETCH_ERROR);
     }
 
     const data = await response.json();
 
     if (!Array.isArray(data.levels)) {
-      throw new Error("Invalid API response");
+      throw new Error(INVALID_API_RESPONSE_ERROR);
     }
 
     return data.levels;
@@ -35,7 +39,7 @@ export const submitAssignment = async (
 
     if (!response.ok) {
       const errorData = await response.json();
-      throw new Error(errorData.message || "Submission failed");
+      throw new Error(errorData.message || SUBMISSION_FAILED_ERROR);
     }
 
     const result = await response.json();
