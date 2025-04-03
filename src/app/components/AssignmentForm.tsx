@@ -9,27 +9,26 @@ import { AssignmentData } from "@/types/AssignmentData";
 
 export default function AssignmentForm() {
   const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AssignmentData>({ resolver: yupResolver(schema) });
+
+  const {
     candidateLevels,
     loading: isLevelsLoading,
     error: errorLevels,
   } = useCandidateLevels();
+
   const {
     submitAssignment,
-    loading: isSubmitting,
+    isLoading: isSubmitting,
     error: submitError,
   } = useSubmitAssignment();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AssignmentData>({
-    resolver: yupResolver(schema),
-  });
-
   return (
     <form
-      onSubmit={handleSubmit(submitAssignment)}
+      onSubmit={handleSubmit((data) => submitAssignment(data))}
       className="w-full max-w-3xl mx-auto p-10 bg-white shadow-lg rounded-2xl"
     >
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">

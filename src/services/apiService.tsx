@@ -23,7 +23,9 @@ export const fetchCandidateLevels = async (): Promise<string[]> => {
   }
 };
 
-export const submitAssignment = async (data: AssignmentData): Promise<void> => {
+export const submitAssignment = async (
+  data: AssignmentData,
+): Promise<AssignmentData> => {
   try {
     const response = await fetch(`${API_BASE_URL}/assignments`, {
       method: "POST",
@@ -35,6 +37,10 @@ export const submitAssignment = async (data: AssignmentData): Promise<void> => {
       const errorData = await response.json();
       throw new Error(errorData.message || "Submission failed");
     }
+
+    const result = await response.json();
+
+    return result.data;
   } catch (error) {
     console.error(error);
     throw error;
