@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Assignment Submission Portal
 
-First, run the development server:
+##  Overview
+This is a Next.js application that allows candidates to submit their assignments. The application uses React Hook Form for validation.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Table of Contents
+
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Setup Instructions](#setup-installation)
+- [Deployment](#deployment)
+- [API Endpoints](#api-endpoints)
+- [Improvements ](#improvements)
+- [Contribution](#contribution)
+
+##  Features
+- Dynamic form validation using Yup & React Hook Form.
+- Fetching candidate levels dynamically.
+- API request handling.
+- Local storage management for storing submitted assignments.
+- Client-side routing with Next.js.
+
+## Tech Stack
+
+- **Frontend**: `Next.js` (App Router), `React`
+- **Styling**: `Tailwind CSS`
+- **Form Handling**: `react-hook-form`, `Yup` for schema validation
+- **Type Safety**: `TypeScript`
+- **Routing**: `next/navigation` (useRouter, NextLink)
+- **Local Storage Management**: Custom hook `useLocalStorage`
+- **Version Control**: `Git`, `GitHub`
+- **Deployment**: `Vercel`
+- **Linting & Formatting**: `ESLint`, `Prettier`
+
+##  Project Structure
+```
+/src
+├── app           # Next.js App Router structure
+│   ├── thank-you # Thank You page route
+├── components    # Reusable UI components
+├── constants     # Application-wide constants
+├── hooks         # Custom React hooks (e.g., localStorage, API handlers)
+├── images        # Static assets and images
+├── models        # Data models and structures
+├── services      # API service functions
+├── styles        # Global SCSS styles
+├── types         # TypeScript types/interfaces
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup Instructions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1️. Clone the Repository
+```sh
+git clone https://github.com/yourusername/assignment-portal.git
+cd assignment-portal
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2️. Install Dependencies
+```sh
+npm install
+# or
+yarn install
+```
 
-## Learn More
+### 3️. Run the Development Server
+```sh
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+##  Deployment
+The application is deployed on Vercel.  
+**Live URL:** [https://assignment-submission-portal-sable.vercel.app/](https://assignment-submission-portal-sable.vercel.app/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Endpoints
+- **Fetch Candidate Levels:**  
+  `GET https://tools.qa.ale.ai/api/tools/candidates/levels`
+- **Submit Assignment:**  
+  `POST https://tools.qa.ale.ai/api/tools/candidates/assignments`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Improvements
+- Add a loading skeleton for better UX.
+- Implement authentication for secure submission.
+- Improve form UI with animations.
 
-## Deploy on Vercel
+## Contribution
+Feel free to fork this repository and open a PR with your improvements!
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2025 | Oleh
