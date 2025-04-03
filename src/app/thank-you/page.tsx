@@ -2,7 +2,7 @@
 
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { SubmittedAssignmentData } from "@/types/AssignmentData";
-import { submitAssignment } from "@/services/apiService";
+import Link from "next/link";
 
 export default function ThankYouPage() {
   const [submittedAssignment] = useLocalStorage<SubmittedAssignmentData | null>(
@@ -33,12 +33,12 @@ export default function ThankYouPage() {
           </div>
         )}
 
-        <a
+        <Link
           href="/"
           className="mt-6 inline-block bg-green-700 hover:bg-black text-white font-semibold py-3 px-6 rounded-xl transition"
         >
           Submit Another Assignment
-        </a>
+        </Link>
       </div>
     </main>
   );
